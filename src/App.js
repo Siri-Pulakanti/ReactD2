@@ -18,28 +18,38 @@ function App() {
       content:
         "How to keep a programmer in the shower forever. Show him the shampoo bottle instructions: Lather. Rinse. Repeat.",
     },
-    {
-      key: 3,
-      title: "Arrays",
-      content:
-        "Q. Why did the programmer quit his job? A. Because he didn't get arrays.",
-    },
-    {
-      key: 4,
-      title: "Hardware vs. Software",
-      content:
-        "What's the difference between hardware and software? You can hit your hardware with a hammer, but you can only curse at your software.",
-    },
-    {
-      key: 5,
-      title: "Big ideas",
-      content: "Eat more sushi",
-    },
   ]);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  function handleTitleInputChange(event) {
+    setTitle(event.target.value);
+  }
+  function handleContentInputChange(value) {
+    setContent(value);
+  }
+  function handleButtonClick() {
+    let newNote = { title: title, content: content, key: notes.length + 1 };
+    setNotes([...notes, newNote]);
+    setTitle("");
+    setContent("");
+  }
 
   return (
     <div className="App">
       <Header />
+      <input
+        placeholder="title"
+        onChange={handleTitleInputChange}
+        value={title}
+      />
+      <input
+        placeholder="content"
+        onChange={(event) => {
+          handleContentInputChange(event.target.value);
+        }}
+        value={content}
+      />
+      <button onClick={handleButtonClick}>Add New Note</button>
       <div className="note-container">
         {notes.map((note) => {
           return <Note title={note.title} content={note.content} />;
