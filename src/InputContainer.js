@@ -3,11 +3,18 @@ import React, { useState } from "react";
 function InputContainer({ notes, setNotes }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [isBtnDisabled, setIsBtnDisabled] = useState(true);
   function handleTitleInputChange(event) {
     setTitle(event.target.value);
+    content == "" || event.target.value == ""
+      ? setIsBtnDisabled(true)
+      : setIsBtnDisabled(false);
   }
   function handleContentInputChange(value) {
     setContent(value);
+    value == "" || title == ""
+      ? setIsBtnDisabled(true)
+      : setIsBtnDisabled(false);
   }
   function handleButtonClick(event) {
     event.preventDefault();
@@ -22,6 +29,7 @@ function InputContainer({ notes, setNotes }) {
         placeholder="title"
         onChange={handleTitleInputChange}
         value={title}
+        required
       />
       <textarea
         placeholder="content"
@@ -30,7 +38,9 @@ function InputContainer({ notes, setNotes }) {
         }}
         value={content}
       />
-      <button onClick={handleButtonClick}>Add</button>
+      <button onClick={handleButtonClick} disabled={isBtnDisabled}>
+        Add
+      </button>
     </form>
   );
 }

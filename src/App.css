@@ -48,3 +48,7 @@ form button {
   right: 18px;
   bottom: -18px;
 }
+form button:disabled {
+  background-color: gray;
+  opacity: 0.8;
+}
