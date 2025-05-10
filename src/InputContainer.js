@@ -9,28 +9,29 @@ function InputContainer({ notes, setNotes }) {
   function handleContentInputChange(value) {
     setContent(value);
   }
-  function handleButtonClick() {
+  function handleButtonClick(event) {
+    event.preventDefault();
     let newNote = { title: title, content: content, key: notes.length + 1 };
     setNotes([...notes, newNote]);
     setTitle("");
     setContent("");
   }
   return (
-    <>
+    <form>
       <input
         placeholder="title"
         onChange={handleTitleInputChange}
         value={title}
       />
-      <input
+      <textarea
         placeholder="content"
         onChange={(event) => {
           handleContentInputChange(event.target.value);
         }}
         value={content}
       />
-      <button onClick={handleButtonClick}>Add New Note</button>
-    </>
+      <button onClick={handleButtonClick}>Add</button>
+    </form>
   );
 }
 export default InputContainer;

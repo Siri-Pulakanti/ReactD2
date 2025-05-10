@@ -14,7 +14,9 @@ function App() {
 
       <div className="note-container">
         {notes.map((note) => {
-          return <Note title={note.title} content={note.content} />;
+          return (
+            <Note title={note.title} content={note.content} key={note.key} />
+          );
         })}
       </div>
       <Footer />
