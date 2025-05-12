@@ -22,6 +22,7 @@ function InputContainer({ notes, setNotes }) {
     setNotes([...notes, newNote]);
     setTitle("");
     setContent("");
+    setIsBtnDisabled(true);
   }
   return (
     <form>
