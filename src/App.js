@@ -6,16 +6,29 @@ import InputContainer from "./InputContainer";
 import Note from "./Note";
 function App() {
   const [notes, setNotes] = useState([]);
+  const [uniqueId, setUniqueId] = useState(0);
 
   return (
     <div className="App">
       <Header />
-      <InputContainer notes={notes} setNotes={setNotes} />
+      <InputContainer
+        notes={notes}
+        setNotes={setNotes}
+        uniqueId={uniqueId}
+        setUniqueId={setUniqueId}
+      />
 
       <div className="note-container">
         {notes.map((note) => {
           return (
-            <Note title={note.title} content={note.content} key={note.key} />
+            <Note
+              title={note.title}
+              content={note.content}
+              key={note.uniqueId}
+              uniqueId={note.uniqueId}
+              notes={notes}
+              setNotes={setNotes}
+            />
           );
         })}
       </div>

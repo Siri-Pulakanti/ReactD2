@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function InputContainer({ notes, setNotes }) {
+function InputContainer({ notes, setNotes, uniqueId, setUniqueId }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isBtnDisabled, setIsBtnDisabled] = useState(true);
@@ -18,10 +18,11 @@ function InputContainer({ notes, setNotes }) {
   }
   function handleButtonClick(event) {
     event.preventDefault();
-    let newNote = { title: title, content: content, key: notes.length + 1 };
+    let newNote = { title: title, content: content, uniqueId: uniqueId };
     setNotes([...notes, newNote]);
     setTitle("");
     setContent("");
+    setUniqueId(uniqueId + 1);
     setIsBtnDisabled(true);
   }
   return (
