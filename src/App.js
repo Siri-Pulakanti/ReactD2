@@ -12,7 +12,6 @@ function App() {
     <div className="App">
       <Header />
       <InputContainer
-        notes={notes}
         setNotes={setNotes}
         uniqueId={uniqueId}
         setUniqueId={setUniqueId}
@@ -26,7 +25,6 @@ function App() {
               content={note.content}
               key={note.uniqueId}
               uniqueId={note.uniqueId}
-              notes={notes}
               setNotes={setNotes}
             />
           );

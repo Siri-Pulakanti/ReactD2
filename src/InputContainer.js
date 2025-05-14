@@ -1,25 +1,29 @@
 import React, { useState } from "react";
 
-function InputContainer({ notes, setNotes, uniqueId, setUniqueId }) {
+function InputContainer({ setNotes, uniqueId, setUniqueId }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isBtnDisabled, setIsBtnDisabled] = useState(true);
-  function handleTitleInputChange(event) {
-    setTitle(event.target.value);
-    content == "" || event.target.value == ""
+
+  function handleButtonDisability() {
+    title.trim() == "" || content.trim() == ""
       ? setIsBtnDisabled(true)
       : setIsBtnDisabled(false);
   }
+
+  function handleTitleInputChange(value) {
+    setTitle(value);
+    handleButtonDisability();
+  }
   function handleContentInputChange(value) {
     setContent(value);
-    value == "" || title == ""
-      ? setIsBtnDisabled(true)
-      : setIsBtnDisabled(false);
+    handleButtonDisability();
   }
   function handleButtonClick(event) {
     event.preventDefault();
     let newNote = { title: title, content: content, uniqueId: uniqueId };
-    setNotes([...notes, newNote]);
+    // setNotes([...notes, newNote]);This can be written as follows
+    setNotes((prev) => [...prev, newNote]);
     setTitle("");
     setContent("");
     setUniqueId(uniqueId + 1);
@@ -29,7 +33,10 @@ function InputContainer({ notes, setNotes, uniqueId, setUniqueId }) {
     <form>
       <input
         placeholder="title"
-        onChange={handleTitleInputChange}
+        // onChange={handleTitleInputChange}
+        onChange={(event) => {
+          handleTitleInputChange(event.target.value);
+        }}
         value={title}
         required
       />

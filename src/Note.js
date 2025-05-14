@@ -3,12 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import "./Note.css";
 
-function Note({ title, content, uniqueId, notes, setNotes }) {
+function Note({ title, content, uniqueId, setNotes }) {
   function handleButtonClick() {
-    console.log("The button is clicked,Title is", title, uniqueId, notes);
-    const newNotes = notes.filter((note) => note.uniqueId != uniqueId);
-    console.log(newNotes);
-    setNotes(newNotes);
+    //setCount((prev)=>prev+1)
+    setNotes((prev) => prev.filter((note) => note.uniqueId != uniqueId));
   }
   return (
     <div className="note">
