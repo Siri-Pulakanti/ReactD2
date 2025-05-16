@@ -10,7 +10,6 @@ function Note({ title, content, uniqueId, setNotes, isCompleted }) {
     setNotes((prev) => {
       let updatedNoteArray = prev.filter((note) => note.uniqueId != uniqueId);
 
-      localStorage.setItem("notes", JSON.stringify(updatedNoteArray));
       return updatedNoteArray;
     });
   }
@@ -23,7 +22,6 @@ function Note({ title, content, uniqueId, setNotes, isCompleted }) {
           : item
       );
 
-      localStorage.setItem("notes", JSON.stringify(updatedNotes));
       return updatedNotes;
     });
   }

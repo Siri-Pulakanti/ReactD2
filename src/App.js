@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -20,7 +20,12 @@ function App() {
     },
   ]);
   const [uniqueId, setUniqueId] = useState(notes.length);
-
+  // setTimeout(
+  //   () => { },3000
+  // )
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
   return (
     <div className="App">
       <Header />

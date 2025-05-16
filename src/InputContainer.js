@@ -28,11 +28,7 @@ function InputContainer({ setNotes, uniqueId, setUniqueId, notes }) {
       isCompleted: false,
     };
     // setNotes([...notes, newNote]);This can be written as follows
-    setNotes((prev) => {
-      localStorage.setItem("notes", JSON.stringify([...prev, newNote]));
-
-      return [...prev, newNote];
-    });
+    setNotes((prev) => [...prev, newNote]);
 
     setTitle("");
     setContent("");
