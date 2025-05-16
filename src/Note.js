@@ -7,17 +7,27 @@ import "./Note.css";
 function Note({ title, content, uniqueId, setNotes, isCompleted }) {
   function handleButtonClick() {
     //setCount((prev)=>prev+1)
-    setNotes((prev) => prev.filter((note) => note.uniqueId != uniqueId));
+    setNotes((prev) => {
+      let updatedNoteArray = prev.filter((note) => note.uniqueId != uniqueId);
+
+      localStorage.setItem("notes", JSON.stringify(updatedNoteArray));
+      return updatedNoteArray;
+    });
   }
+
   function handleToggleStatus() {
-    setNotes((prev) =>
-      prev.map((item) =>
-        item.uniqueId == uniqueId
-          ? { ...item, isCompleted: !isCompleted }
+    setNotes((prev) => {
+      const updatedNotes = prev.map((item) =>
+        item.uniqueId === uniqueId
+          ? { ...item, isCompleted: !item.isCompleted } // ← use item.isCompleted here
           : item
-      )
-    );
+      );
+
+      localStorage.setItem("notes", JSON.stringify(updatedNotes));
+      return updatedNotes;
+    });
   }
+
   return (
     <div className={`note ${isCompleted && "completed"}`}>
       <h1>{title}</h1>

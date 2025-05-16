@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function InputContainer({ setNotes, uniqueId, setUniqueId }) {
+function InputContainer({ setNotes, uniqueId, setUniqueId, notes }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isBtnDisabled, setIsBtnDisabled] = useState(true);
@@ -28,7 +28,12 @@ function InputContainer({ setNotes, uniqueId, setUniqueId }) {
       isCompleted: false,
     };
     // setNotes([...notes, newNote]);This can be written as follows
-    setNotes((prev) => [...prev, newNote]);
+    setNotes((prev) => {
+      localStorage.setItem("notes", JSON.stringify([...prev, newNote]));
+
+      return [...prev, newNote];
+    });
+
     setTitle("");
     setContent("");
     setUniqueId(uniqueId + 1);

@@ -5,8 +5,21 @@ import Header from "./Header";
 import InputContainer from "./InputContainer";
 import Note from "./Note";
 function App() {
-  const [notes, setNotes] = useState([]);
-  const [uniqueId, setUniqueId] = useState(0);
+  const [notes, setNotes] = useState([
+    {
+      title: "WakeUp",
+      content: "Make your bed",
+      uniqueId: 0,
+      isCompleted: true,
+    },
+    {
+      title: "Stretch Your Body",
+      content: "Go for a walk",
+      uniqueId: 1,
+      isCompleted: false,
+    },
+  ]);
+  const [uniqueId, setUniqueId] = useState(notes.length);
 
   return (
     <div className="App">
@@ -15,6 +28,7 @@ function App() {
         setNotes={setNotes}
         uniqueId={uniqueId}
         setUniqueId={setUniqueId}
+        notes={notes}
       />
 
       <div className="note-container">
