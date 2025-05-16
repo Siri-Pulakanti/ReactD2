@@ -26,6 +26,7 @@ function App() {
               key={note.uniqueId}
               uniqueId={note.uniqueId}
               setNotes={setNotes}
+              isCompleted={note.isCompleted}
             />
           );
         })}

@@ -21,7 +21,12 @@ function InputContainer({ setNotes, uniqueId, setUniqueId }) {
   }
   function handleButtonClick(event) {
     event.preventDefault();
-    let newNote = { title: title, content: content, uniqueId: uniqueId };
+    let newNote = {
+      title: title,
+      content: content,
+      uniqueId: uniqueId,
+      isCompleted: false,
+    };
     // setNotes([...notes, newNote]);This can be written as follows
     setNotes((prev) => [...prev, newNote]);
     setTitle("");
