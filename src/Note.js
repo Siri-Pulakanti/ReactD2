@@ -8,7 +8,7 @@ function Note({ title, content, uniqueId, setNotes, isCompleted }) {
   function handleButtonClick() {
     //setCount((prev)=>prev+1)
     setNotes((prev) => {
-      let updatedNoteArray = prev.filter((note) => note.uniqueId != uniqueId);
+      let updatedNoteArray = prev.filter((note) => note.uniqueId !== uniqueId);
 
       return updatedNoteArray;
     });

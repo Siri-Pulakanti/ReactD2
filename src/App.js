@@ -10,7 +10,6 @@ function App() {
   const [loaded, setloaded] = useState(false);
 
   useEffect(() => {
-    // localStorage.setItem("notes", JSON.stringify(notes));
     let storedNotes = localStorage.getItem("notes");
     console.log("First useEffect");
     console.log(storedNotes);

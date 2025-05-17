@@ -6,7 +6,7 @@ function InputContainer({ setNotes, uniqueId, setUniqueId, notes }) {
   const [isBtnDisabled, setIsBtnDisabled] = useState(true);
 
   function handleButtonDisability() {
-    title.trim() == "" || content.trim() == ""
+    title.trim() === "" || content.trim() === ""
       ? setIsBtnDisabled(true)
       : setIsBtnDisabled(false);
   }
