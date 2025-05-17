@@ -4,7 +4,7 @@ import "./Header.css";
 function Header() {
   return (
     <header>
-      <h1>Scribbly</h1>
+      <img src="logo.png" alt="Scribbly Logo" />
     </header>
   );
 }
