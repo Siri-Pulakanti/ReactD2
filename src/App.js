@@ -5,37 +5,25 @@ import Header from "./Header";
 import InputContainer from "./InputContainer";
 import Note from "./Note";
 function App() {
-  const [notes, setNotes] = useState(() => {
+  const [notes, setNotes] = useState([]);
+  const [uniqueId, setUniqueId] = useState(notes.length);
+  const [loaded, setloaded] = useState(false);
+
+  useEffect(() => {
+    // localStorage.setItem("notes", JSON.stringify(notes));
     let storedNotes = localStorage.getItem("notes");
     console.log("First useEffect");
     console.log(storedNotes);
     try {
-      return JSON.parse(storedNotes);
+      setNotes(JSON.parse(storedNotes));
     } catch (error) {
       console.log(error);
-      return [];
     }
-  });
-  const [uniqueId, setUniqueId] = useState(notes.length);
-  // setTimeout(
-  //   () => { },3000
-  // )
-  // useEffect(() => {
-  //   // localStorage.setItem("notes", JSON.stringify(notes));
-  //   let storedNotes = localStorage.getItem("notes");
-  //   console.log("First useEffect");
-  //   console.log(storedNotes);
-  //   try {
-  //     setNotes(JSON.parse(storedNotes));
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, []);
+    setloaded(true);
+  }, []);
   useEffect(() => {
-    console.log("Second useEffect");
-
-    localStorage.setItem("notes", JSON.stringify(notes));
-  }, [notes]);
+    loaded && localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes, loaded]);
   return (
     <div className="App">
       <Header />
