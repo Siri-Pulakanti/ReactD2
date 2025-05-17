@@ -5,25 +5,35 @@ import Header from "./Header";
 import InputContainer from "./InputContainer";
 import Note from "./Note";
 function App() {
-  const [notes, setNotes] = useState([
-    {
-      title: "WakeUp",
-      content: "Make your bed",
-      uniqueId: 0,
-      isCompleted: true,
-    },
-    {
-      title: "Stretch Your Body",
-      content: "Go for a walk",
-      uniqueId: 1,
-      isCompleted: false,
-    },
-  ]);
+  const [notes, setNotes] = useState(() => {
+    let storedNotes = localStorage.getItem("notes");
+    console.log("First useEffect");
+    console.log(storedNotes);
+    try {
+      return JSON.parse(storedNotes);
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
+  });
   const [uniqueId, setUniqueId] = useState(notes.length);
   // setTimeout(
   //   () => { },3000
   // )
+  // useEffect(() => {
+  //   // localStorage.setItem("notes", JSON.stringify(notes));
+  //   let storedNotes = localStorage.getItem("notes");
+  //   console.log("First useEffect");
+  //   console.log(storedNotes);
+  //   try {
+  //     setNotes(JSON.parse(storedNotes));
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, []);
   useEffect(() => {
+    console.log("Second useEffect");
+
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
   return (
