@@ -11,6 +11,11 @@ function App() {
 
   useEffect(() => {
     let storedNotes = localStorage.getItem("notes");
+    if (storedNotes === null) {
+      setNotes([]);
+      setloaded(true);
+      return;
+    }
     console.log("First useEffect");
     console.log(storedNotes);
     try {
