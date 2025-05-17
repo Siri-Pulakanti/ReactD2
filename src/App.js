@@ -31,6 +31,8 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <h2> Scribbly — lightning-fast note-taking for busy minds!</h2>
+      <h4>Quickly jot down your ideas with one click!</h4>
       <InputContainer
         setNotes={setNotes}
         uniqueId={uniqueId}
