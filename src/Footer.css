@@ -5,7 +5,8 @@ footer {
   position: absolute;
   bottom: 0;
   padding: 16px;
+  font-weight: bold;
 }
 footer p {
-  color: #ccc;
+  color: #f4631e;
 }
